@@ -23,7 +23,7 @@ size_t	ft_wstrlen(wchar_t *str)
 	{
 		if (*str <= 0x7F)
 			i++;
-		else if (MB_CUR_MAX == 1 && *str >= 0x7F)
+		else if (MB_CUR_MAX == 1 && *str > 0x7F)
 			return (-1);
 		else if (*str <= 0x7FF)
 			i += 2;
@@ -51,9 +51,9 @@ void	ft_putwchar_in_char(wchar_t chr, char **str, int i)
 	unsigned int	v;
 
 	v = chr;
-	if (chr <= 0x7F )
+	if (chr <= 0x7F * 2)
 		*((*str) + 0 + i) = chr;
-	else if (chr <= 0x7FF )
+	else if (chr <= 0x7FF)
 	{
 		*((*str) + 0 + i) = (MASK >> 8) | (((v >> 6) << 27) >> 27);
 		*((*str) + 1 + i) = ((MASK << 24) >> 24) | ((v << 26) >> 26);
