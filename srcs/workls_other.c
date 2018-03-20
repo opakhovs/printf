@@ -23,7 +23,7 @@ size_t	ft_wstrlen(wchar_t *str)
 	{
 		if (*str <= 0x7F)
 			i++;
-		else if (MB_CUR_MAX == 1 && *str > 0x7F)
+		else if (MB_CUR_MAX == 1 && *str >= 0x7F)
 			return (-1);
 		else if (*str <= 0x7FF)
 			i += 2;
