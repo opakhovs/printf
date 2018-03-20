@@ -51,7 +51,7 @@ void	ft_putwchar_in_char(wchar_t chr, char **str, int i)
 	unsigned int	v;
 
 	v = chr;
-	if (chr <= 0x7F * 2)
+	if (chr <= 0x7F)
 		*((*str) + 0 + i) = chr;
 	else if (chr <= 0x7FF)
 	{
