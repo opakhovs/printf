@@ -58,13 +58,13 @@ void	ft_putwchar_in_char(wchar_t chr, char **str, int i)
 		*((*str) + 0 + i) = (MASK >> 8) | (((v >> 6) << 27) >> 27);
 		*((*str) + 1 + i) = ((MASK << 24) >> 24) | ((v << 26) >> 26);
 	}
-	else if (chr <= 0xFFFF)
+	else if (chr <= 0xFFFF * 2)
 	{
 		*((*str) + 0 + i) = (MASK2 >> 16) | (((v >> 12) << 28) >> 28);
 		*((*str) + 1 + i) = ((MASK2 << 16) >> 24) | ((v >> 6) << 26) >> 26;
 		*((*str) + 2 + i) = ((MASK2 << 24) >> 24) | ((v << 26) >> 26);
 	}
-	else if (chr <= 0x10FFFF )
+	else if (chr <= 0x10FFFF)
 	{
 		*((*str) + 0 + i) = (MASK3 >> 24) | (((v >> 18) << 29) >> 29);
 		*((*str) + 1 + i) = ((MASK3 << 8) >> 24) | (((v >> 12) << 26) >> 26);
