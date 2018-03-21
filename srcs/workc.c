@@ -59,7 +59,7 @@ int		cc_line(va_list *valist, t_flags *flags, char ***res, int **p)
 		c = str[0];
 	if (strlen == 1 && freew(&str))
 		return (copy_c_line(flags, res, p, c));
-	if (flags->bp > strlen)
+	if (flags->ap > strlen)
 		return (strlen);
 	temp = ft_strnew(strlen + 1);
 	ft_putwchar_in_char(*str, &temp, 0);
