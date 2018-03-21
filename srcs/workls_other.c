@@ -46,20 +46,20 @@ wchar_t	*ft_wstrnew(size_t size)
 	return (str);
 }
 
-void	ft_putwchar_in_char(wchar_t chr, char **str, int i)
+void	ft_putwchar_in_char(wchar_t ch, char **str, int i)
 {
 	unsigned int	v;
 
-	v = chr;
-	if (chr <= 0x7F)
-		*((*str) + 0 + i) = (char)chr;
-	else if (chr <= 0xFFFF)
+	v = ch;
+	if (ch <= 0x7F)
+		*((*str) + 0 + i) = (char)ch;
+	else if (ch <= 0xFFFF)
 	{
 		*((*str) + 0 + i) = 0xE0 | ((ch >> 12) & 0x3F);
 		*((*str) + 1 + i) = 0x80 | ((ch >> 6) & 0x3F);
 		*((*str) + 2 + i) = 0x80 | (ch & 0x3F);
 	}
-	else if (chr <= 0x10FFFF)
+	else if (ch <= 0x10FFFF)
 	{
 		*((*str) + 0 + i) = 0xF0 | ((ch >> 18) & 0x3F);
 		*((*str) + 1 + i) = 0x80 | ((ch >> 12) & 0x3F);
