@@ -21,14 +21,16 @@ size_t	ft_wstrlen(wchar_t *str)
 		return (0);
 	while (*str)
 	{
-		if (*str < (1 << 7))
-			return (1);
-		else if (*str < (1 << 11))
-			return (2);
-		else if (*str < (1 << 16))
-			return (3);
-		else if (*str < (1 << 21))
-			return (4);
+		if (*str <= 0x7F)
+			i++;
+		else if (MB_CUR_MAX == 1 && (*str > 0x7F || *str < -128))
+			return (-1);
+		else if (*str <= 0x7FF)
+			i += 2;
+		else if (*str <= 0xFFFF)
+			i += 3;
+		else if (*str <= 0x10FFFF)
+			i += 4;
 		str++;
 	}
 	return (i);
