@@ -21,13 +21,13 @@ size_t	ft_wstrlen(wchar_t *str)
 		return (0);
 	while (*str)
 	{
-		if (chr < (1 << 7))
+		if (*str < (1 << 7))
 			i++;
-		else if (chr < (1 << 11))
+		else if (*str < (1 << 11))
 			i += 2;
-		else if (chr < (1 << 16))
+		else if (*str < (1 << 16))
 			i += 3;
-		else if (chr < (1 << 21))
+		else if (*str < (1 << 21))
 			i += 4;
 		str++;
 	}
