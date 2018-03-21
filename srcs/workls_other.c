@@ -67,23 +67,3 @@ void	ft_putwchar_in_char(wchar_t chr, char **str, int i)
 		*((*str) + 3 + i) = ((chr & 0x3F) | 0x80);
 	}
 }
-/*if (chr < (MB_CUR_MAX == 1 ? 0xFF : 0x7F))
-*((*str) + 0 + i) = chr;
-else if (chr < (1 << 11))
-{
-*((*str) + 0 + i) = ((chr >> 6) | 0xC0);
-*((*str) + 1 + i) = ((chr & 0x3F) | 0x80);
-}
-else if (chr < (1 << 16))
-{
-*((*str) + 0 + i) = (((chr >> 12)) | 0xE0);
-*((*str) + 1 + i) = (((chr >> 6) & 0x3F) | 0x80);
-*((*str) + 2 + i) = ((chr & 0x3F) | 0x80);
-}
-else if (chr < (1 << 21))
-{
-*((*str) + 0 + i) = (((chr >> 18)) | 0xF0);
-*((*str) + 1 + i) = (((chr >> 12) & 0x3F) | 0x80);
-*((*str) + 2 + i) = (((chr >> 6) & 0x3F) | 0x80);
-*((*str) + 3 + i) = ((chr & 0x3F) | 0x80);
-}*/
