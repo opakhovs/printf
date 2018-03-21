@@ -25,6 +25,8 @@ size_t	ft_wstrlen(wchar_t *str)
 			i++;
 		else if (MB_CUR_MAX == 1 && (*str > 0x7F || *str < -128))
 			return (-1);
+		else if (*str <= 0x7FF)
+			i += 2;
 		else if (*str <= 0xFFFF)
 			i += 3;
 		else if (*str <= 0x10FFFF)
@@ -44,24 +46,26 @@ wchar_t	*ft_wstrnew(size_t size)
 	return (str);
 }
 
-void	ft_putwchar_in_char(wchar_t ch, char **str, int i)
+void	ft_putwchar_in_char(wchar_t chr, char **str, int i)
 {
-	unsigned int	v;
-
-	v = ch;
-	if (ch <= 0x7F)
-		*((*str) + 0 + i) = (char)ch;
-	else if (ch <= 0xFFFF)
+	if (chr < (MB_CUR_MAX == 1 ? 0xFF : 0x7F))
+		*((*str) + 0 + i) = (unsigned char)chr;
+	else if (chr < (1 << 11))
 	{
-		*((*str) + 0 + i) = 0xE0 | ((ch >> 12) & 0x3F);
-		*((*str) + 1 + i) = 0x80 | ((ch >> 6) & 0x3F);
-		*((*str) + 2 + i) = 0x80 | (ch & 0x3F);
+		*((*str) + 0 + i) = (unsigned char)((chr >> 6) | 0xC0);
+		*((*str) + 1 + i) = (unsigned char)((chr & 0x3F) | 0x80);
 	}
-	else if (ch <= 0x10FFFF)
+	else if (chr < (1 << 16))
 	{
-		*((*str) + 0 + i) = 0xF0 | ((ch >> 18) & 0x3F);
-		*((*str) + 1 + i) = 0x80 | ((ch >> 12) & 0x3F);
-		*((*str) + 2 + i) = 0x80 | ((ch >> 6) & 0x3F);
-		*((*str) + 3 + i) = 0x80 | (ch & 0x3F);
+		*((*str) + 0 + i) = (unsigned char)(((chr >> 12)) | 0xE0);
+		*((*str) + 1 + i) = (unsigned char)(((chr >> 6) & 0x3F) | 0x80);
+		*((*str) + 2 + i) = (unsigned char)((chr & 0x3F) | 0x80);
+	}
+	else if (chr < (1 << 21))
+	{
+		*((*str) + 0 + i) = (unsigned char)(((chr >> 18)) | 0xF0);
+		*((*str) + 1 + i) = (unsigned char)(((chr >> 12) & 0x3F) | 0x80);
+		*((*str) + 2 + i) = (unsigned char)(((chr >> 6) & 0x3F) | 0x80);
+		*((*str) + 3 + i) = (unsigned char)((chr & 0x3F) | 0x80);
 	}
 }
