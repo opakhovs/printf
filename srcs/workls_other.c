@@ -53,11 +53,6 @@ void	ft_putwchar_in_char(wchar_t chr, char **str, int i)
 	v = chr;
 	if (chr <= 0x7F)
 		*((*str) + 0 + i) = chr;
-	else if (chr <= 0x7FF)
-	{
-		*((*str) + 0 + i) = (MASK >> 8) | (((v >> 6) << 27) >> 27);
-		*((*str) + 1 + i) = ((MASK << 24) >> 24) | ((v << 26) >> 26);
-	}
 	else if (chr <= 0xFFFF)
 	{
 		*((*str) + 0 + i) = (MASK2 >> 16) | (((v >> 12) << 28) >> 28);
