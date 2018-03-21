@@ -15,7 +15,6 @@
 
 # include <stdarg.h>
 # include <wchar.h>
-# include <stdlib.h>
 # include "../includes/libft.h"
 
 # define CHECK (flags->ll==0&&flags->l==0&&flags->z==0&&flags->j==0)
