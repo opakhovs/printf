@@ -12,6 +12,20 @@
 
 #include "ft_printf.h"
 
+void	ft_rewrite(char **temp, int size)
+{
+	int		count;
+	char	*str;
+
+	count = 0;
+	str = ft_strnew(size + 1);
+	ft_strncpy(str, *temp, size);
+	free_locate(temp);
+	*temp = ft_strnew(size + 1);
+	ft_strcpy(*temp, str);
+	free_locate(&str);
+}
+
 int		c_line(va_list *valist, t_flags *flags, char ***res, int **p)
 {
 	char	*str;
@@ -59,10 +73,10 @@ int		cc_line(va_list *valist, t_flags *flags, char ***res, int **p)
 		c = str[0];
 	if (strlen == 1 && freew(&str))
 		return (copy_c_line(flags, res, p, c));
-	if (flags->p == 1)
-		strlen = flags->ap;
 	temp = ft_strnew(strlen + 1);
 	ft_putwchar_in_char(*str, &temp, 0);
+	if (flags->p == 1 && (int)strlen > flags->ap)
+		ft_rewrite(&temp, flags->ap);
 	operate_s_line(&temp, flags, 0);
 	resize_res(res, ft_strlen(temp), temp);
 	size = ft_strlen(temp);

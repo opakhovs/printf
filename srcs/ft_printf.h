@@ -69,6 +69,7 @@ int				ft_strlenl(wchar_t *str);
 void			p_line_pap(char **str, t_flags *flags);
 void			p_line_zbp(char **str, t_flags *flags);
 void			p_line_bp(char **str, t_flags *flags);
+void			ft_rewrite(char **temp, int size);
 void			p_line_mbp(char **str, t_flags *flags);
 void			p_rewrite(char **str);
 void			p_anrewrite(char **str);
