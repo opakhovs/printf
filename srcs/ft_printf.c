@@ -63,7 +63,6 @@ int		an_part2(char c, va_list *valist, t_flags flags, char ***res)
 		return (dd_line(valist, &flags, res));
 	else if (c == 'O')
 		return (oo_line(valist, &flags, res));
-	//else if (c == 'n')
 	else if (c != 's' && c != 'S' && c != 'c' && c != 'C')
 		return (no_line(&flags, c, res));
 	return (0);
@@ -80,7 +79,6 @@ int		cycle(va_list *valist, const char *format,
 	i = -1;
 	len = 0;
 	while (format[++i])
-	{
 		if (format[i] == '%')
 		{
 			flags = check_flags(format, &(i), valist);
@@ -92,10 +90,11 @@ int		cycle(va_list *valist, const char *format,
 				return (-1);
 			if (ch == len)
 				len += an_part2(format[i], valist, flags, res);
+			if (ch == len && format[i] == 'n')
+				n_line(valist, len);
 		}
 		else
 			len = sym_add(res, format[i], len);
-	}
 	return (len);
 }
 

@@ -12,6 +12,17 @@
 
 #include "ft_printf.h"
 
+void	n_line(va_list *valist, int size)
+{
+	int		*num;
+
+	if (!(num = va_arg(*valist, void *)))
+		return ;
+	if (!num)
+		return ;
+	*num = size;
+}
+
 void	p_line_pap(char **str, t_flags *flags)
 {
 	int		size;
