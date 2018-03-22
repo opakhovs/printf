@@ -97,7 +97,7 @@ void			dcycle(t_flags *flags, int *i, int *j);
 void			str_1(char **str, char **nstr, t_flags *flags);
 void			str_2(char **str, char **nstr, t_flags *flags);
 void			ft_putwchar_in_char(wchar_t chr, char **str, int i);
-void			wstr_to_str(wchar_t *str, char **temp, t_flags *flags);
+int				wstr_to_str(wchar_t *str, char **temp, t_flags *flags);
 int				copy_c_line(t_flags *flags, char ***res, int **p, char c);
 void			operate_ss_line(char **str, t_flags *flags);
 int				ss_line(va_list *valist, t_flags *flags, char ***res);

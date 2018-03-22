@@ -34,7 +34,7 @@ void	s_line_pap(char **str, t_flags *flags)
 	free_locate(&nstr);
 }
 
-void	wstr_to_str(wchar_t *str, char **temp, t_flags *flags)
+int		wstr_to_str(wchar_t *str, char **temp, t_flags *flags)
 {
 	int		i;
 	size_t	strlen;
@@ -42,6 +42,10 @@ void	wstr_to_str(wchar_t *str, char **temp, t_flags *flags)
 	i = 0;
 	while (*str)
 	{
+		if (MB_CUR_MAX == 1 && *str > 0xFF)
+			free_locate(temp);
+		if (MB_CUR_MAX == 1 && *str > 0xFF)
+			return (-1);
 		if (*str <= 0x7F)
 			strlen = 1;
 		else if (*str <= 0x7FF)
@@ -56,6 +60,7 @@ void	wstr_to_str(wchar_t *str, char **temp, t_flags *flags)
 		str++;
 		i += strlen;
 	}
+	return (0);
 }
 
 int		copy_c_line(t_flags *flags, char ***res, int **p, char c)
@@ -121,7 +126,8 @@ int		ss_line(va_list *valist, t_flags *flags, char ***res)
 	temp = ft_strnew(strlen + 1);
 	if (str == NULL)
 		str = L"(null)";
-	wstr_to_str(str, &temp, flags);
+	if (wstr_to_str(str, &temp, flags) == -1)
+		return (-1);
 	operate_ss_line(&temp, flags);
 	resize_res(res, ft_strlen(temp), temp);
 	size = ft_strlen(temp);
