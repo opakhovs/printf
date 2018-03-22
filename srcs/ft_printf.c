@@ -82,7 +82,7 @@ int		cycle(va_list *valist, const char *format,
 	{
 		if (format[i] == '%')
 		{
-			flags = check_flags(format, &(i));
+			flags = check_flags(format, &(i), valist);
 			if (!format[i])
 				break ;
 			ch = len;

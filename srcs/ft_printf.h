@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <wchar.h>
+# include <limits.h>
 # include "../includes/libft.h"
 
 # define CHECK (flags->ll==0&&flags->l==0&&flags->z==0&&flags->j==0)
@@ -110,14 +111,15 @@ char			*o_putnbr(uintmax_t num);
 char			*x_putnbr(uintmax_t num);
 char			*xx_putnbr(uintmax_t num);
 int				flags1(const char *fo, int *i, t_flags *flags);
-int				flags2(const char *fo, int *i, t_flags *flags);
-int				flags3(const char *fo, int *i, t_flags *flags);
+int				flags2(const char *fo, int *i, t_flags *flags, va_list *valist);
+int				flags3(const char *fo, int *i, t_flags *flags, va_list *valist);
 int				flags4(const char *fo, int *i, t_flags *flags);
 int				s_line(va_list *valist, t_flags *flags, char ***res);
 t_flags			new_flags();
 int				sym_add(char ***res, char c, int length);
-int				is_correct_flag(const char *fo, int *i, t_flags *flags);
-t_flags			check_flags(const char *format, int *i);
+int				is_correct_flag(const char *fo, int *i,
+	t_flags *flags, va_list *valist);
+t_flags			check_flags(const char *format, int *i, va_list *valist);
 void			print(char **res, int *p);
 int				free_res(char ***res, int **p, char **str);
 int				an_part1(va_list *valist, t_flags flags,

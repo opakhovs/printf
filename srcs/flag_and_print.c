@@ -33,27 +33,27 @@ t_flags	new_flags(void)
 	return (flags);
 }
 
-int		is_correct_flag(const char *fo, int *i, t_flags *flags)
+int		is_correct_flag(const char *fo, int *i, t_flags *flags, va_list *valist)
 {
 	if (flags1(fo, i, flags) == 1)
 		return (1);
-	if (flags2(fo, i, flags) == 1)
+	if (flags2(fo, i, flags, valist) == 1)
 		return (1);
-	if (flags3(fo, i, flags) == 1)
+	if (flags3(fo, i, flags, valist) == 1)
 		return (1);
 	if (flags4(fo, i, flags) == 1)
 		return (1);
 	return (0);
 }
 
-t_flags	check_flags(const char *format, int *i)
+t_flags	check_flags(const char *format, int *i, va_list *valist)
 {
 	t_flags	flags;
 
 	flags = new_flags();
 	(*i)++;
 	while ((int)ft_strlen(format) > *i
-		&& is_correct_flag(format, i, &flags) == 1)
+		&& is_correct_flag(format, i, &flags, valist) == 1)
 		(*i)++;
 	return (flags);
 }
