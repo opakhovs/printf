@@ -39,6 +39,7 @@ typedef struct	s_flags
 	int		l;
 	int		ll;
 	int		hash;
+	int		ul;
 }				t_flags;
 
 void			o_line_hash(char **str);
@@ -73,6 +74,7 @@ void			p_line_bp(char **str, t_flags *flags);
 void			n_line(va_list *valist, int size);
 void			ft_rewrite(char **temp, int size);
 void			p_line_mbp(char **str, t_flags *flags);
+void			s_line_upper_lower(char **str, t_flags *flags);
 void			p_rewrite(char **str);
 void			p_anrewrite(char **str);
 int				ft_atoii(const char *format, int *i);

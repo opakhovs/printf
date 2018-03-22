@@ -49,17 +49,18 @@ int		flags2(const char *fo, int *i, t_flags *flags, va_list *valist)
 		}
 		return (1);
 	}
-	if ((fo[*i] >= '1' && fo[*i] <= '9'))
-	{
-		(flags)->bp = ft_atoii(fo, i);
+	if ((fo[*i] >= '1' && fo[*i] <= '9') && ((flags)->bp = ft_atoii(fo, i)))
 		return (1);
-	}
 	if (fo[*i] == '.' && (fo[(*i + 1)] >= '0' && fo[*i + 1] <= '9') && (*i)++)
 	{
 		(flags)->p = 1;
 		(flags)->ap = ft_atoii(fo, i);
 		return (1);
 	}
+	if (fo[*i] == '_' && ((flags)->ul -= 1))
+		return (1);
+	if (fo[*i] == '^' && ((flags)->ul += 1))
+		return (1);
 	return (0);
 }
 

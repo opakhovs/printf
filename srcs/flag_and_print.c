@@ -30,6 +30,7 @@ t_flags	new_flags(void)
 	flags.h = 0;
 	flags.hh = 0;
 	flags.hash = 0;
+	flags.ul = 0;
 	return (flags);
 }
 

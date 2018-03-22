@@ -65,3 +65,20 @@ int		sym_add(char ***res, char c, int length)
 	free_locate(&str);
 	return (length + 1);
 }
+
+void	s_line_upper_lower(char **str, t_flags *flags)
+{
+	int		i;
+
+	i = -1;
+	if (flags->ul == 1)
+	{
+		while ((*str)[++i])
+			if ((*str)[i] >= 'a' && (*str)[i] <= 'z')
+				(*str)[i] -= 32;
+	}
+	else if (flags->ul == -1)
+		while ((*str)[++i])
+			if ((*str)[i] >= 'A' && (*str)[i] <= 'Z')
+				(*str)[i] += 32;
+}

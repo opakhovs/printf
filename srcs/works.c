@@ -101,6 +101,8 @@ void	operate_s_line(char **str, t_flags *flags, int check)
 		s_line_bp(str, flags);
 	else if (flags->bp > 0 && flags->minus == 1)
 		s_line_mbp(str, flags);
+	if (flags->ul != 0)
+		s_line_upper_lower(str, flags);
 }
 
 int		s_line(va_list *valist, t_flags *flags, char ***res)
