@@ -43,7 +43,10 @@ int		flags2(const char *fo, int *i, t_flags *flags, va_list *valist)
 	{
 		(flags)->bp = va_arg(*valist, int);
 		if ((flags)->bp < 0)
-			(flags)->bp = 0;
+		{
+			(flags)->minus = 1;
+			(flags)->bp *= -1;
+		}
 		return (1);
 	}
 	if ((fo[*i] >= '1' && fo[*i] <= '9'))
@@ -64,11 +67,15 @@ int		flags3(const char *fo, int *i, t_flags *flags, va_list *valist)
 {
 	if (fo[*i] == '.')
 	{
+		(flags)->ap = 0;
+		(flags)->p = 1;
 		if (fo[(*i + 1)] == '*' && (*i)++)
 			(flags)->ap = va_arg(*valist, int);
-		if ((flags)->ap < 0 || fo[(*i)] != '*')
+		if ((flags)->ap < 0)
+		{
 			(flags)->ap = 0;
-		(flags)->p = 1;
+			(flags)->p = 0;
+		}
 		return (1);
 	}
 	if (fo[*i] == 'h' && fo[*i + 1] == 'h' && (*i)++)

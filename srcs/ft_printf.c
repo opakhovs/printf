@@ -63,6 +63,7 @@ int		an_part2(char c, va_list *valist, t_flags flags, char ***res)
 		return (dd_line(valist, &flags, res));
 	else if (c == 'O')
 		return (oo_line(valist, &flags, res));
+	//else if (c == 'n')
 	else if (c != 's' && c != 'S' && c != 'c' && c != 'C')
 		return (no_line(&flags, c, res));
 	return (0);
